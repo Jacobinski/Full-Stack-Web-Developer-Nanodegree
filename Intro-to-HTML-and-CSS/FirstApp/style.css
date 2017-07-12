@@ -1,0 +1,24 @@
+* {
+    //outline : 1px solid red !important;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.description {
+    margin-left: 26px;
+    max-width: 705px;
+}
+
+.screenshot {
+    max-width: 460px;
+}
+
+.app {
+    display: -webkit-flex;
+    display: flex;
+}
