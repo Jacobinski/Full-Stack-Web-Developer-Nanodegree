@@ -1,5 +1,7 @@
 # Full-Stack-Web-Developer-Nanodegree
 
+[Link](https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004)
+
 ## Description
 This program will prepare you for a job as a Full Stack Web Developer, and teach you to build complex server-side web applications that use powerful relational databases to persistently store data.
 
@@ -45,5 +47,3 @@ I am currently doing these courses for free through [Mike Sprague's free resourc
   16. [Shell Workshop](https://www.udacity.com/course/shell-workshop--ud206)
   17. [HTTP & Web Servers](https://www.udacity.com/course/http-web-servers--ud303)
   18. [Designing RESTful APIs](https://www.udacity.com/course/designing-restful-apis--ud388)
-
-https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd004
