@@ -31,9 +31,9 @@ I am currently doing these courses for free through [Mike Sprague's free resourc
   
 | Course                               | Start           | End             | Note                                            |
 | -------------------------------------|-----------------|-----------------|-------------------------------------------------|
-| Programming Foundations with Python  | N/A             | N/A             | Skipped due to prior knowledge of topics .      |
+| Programming Foundations with Python  | N/A             | N/A             | Skipped due to prior knowledge of topics.       |
 | Intro to HTML and CSS                | July 7, 2017    | July 9, 2017    |                                                 |
-| Responsive Web Design Fundamentals   | July 11, 2017   | ???             |                                                 |
-
+| Responsive Web Design Fundamentals   | July 11, 2017   | ???             | Had to take a break from this due to school.    |
+| Intro to Backend                     | August 16, 2017 | ???             |                                                 |
 
 
