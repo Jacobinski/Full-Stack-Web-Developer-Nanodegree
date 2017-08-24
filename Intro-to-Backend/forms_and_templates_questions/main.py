@@ -1,25 +1,24 @@
 import webapp2
+import jinja2
 import cgi
+import os
 
-rot13_form = '''
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ROT13 Cipher</title>
-</head>
-<body>
-    <h1>Enter some text to ROT13:</h1>
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+    autoescape = True)
 
-    <form action="/" method="post">
-        <textarea name="text" rows="4" cols="50">%(message)s</textarea>
-        <br>
-        <input type="submit">
-    </form>
-</body>
-</html>
-'''
+class Handler(webapp2.RequestHandler):
+    def write(self, *a, **kw):
+        self.response.out.write(*a, **kw)
 
-class MainPage(webapp2.RequestHandler):
+    def render_string(self, template, **params):
+        t = jinja_env.get_template(template)
+        return t.render(params)
+
+    def render(self, template, **kw):
+        self.write(self.render_string(template, **kw))
+
+class MainPage(Handler):
     def __rot13_string(self, string):
         def rot13_char(char):
             if char.isalpha():
@@ -39,16 +38,13 @@ class MainPage(webapp2.RequestHandler):
 
         return output
 
-    def write_form(self, message=''):
-        self.response.write(rot13_form %{"message":message})
-
-    def get(self, message=''):
+    def get(self):
         self.response.headers['Content-Type'] = 'text/HTML'
-        self.write_form()
+        self.render("rot13.html")
 
     def post(self):
         message = self.request.get("text")
-        self.write_form(cgi.escape(self.__rot13_string(message)))
+        self.render("rot13.html", message = self.__rot13_string(message))
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
