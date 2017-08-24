@@ -18,7 +18,11 @@ class Handler(webapp2.RequestHandler):
     def render(self, template, **kw):
         self.write(self.render_string(template, **kw))
 
-class MainPage(Handler):
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.redirect("/rot13")
+
+class Rot13Page(Handler):
     def __rot13_string(self, string):
         def rot13_char(char):
             if char.isalpha():
@@ -48,4 +52,5 @@ class MainPage(Handler):
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
+    ('/rot13', Rot13Page),
 ], debug=True)
