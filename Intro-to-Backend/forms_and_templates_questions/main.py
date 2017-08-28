@@ -50,7 +50,12 @@ class Rot13Page(Handler):
         message = self.request.get("text")
         self.render("rot13.html", message = self.__rot13_string(message))
 
+class LoginPage(Handler):
+    def get(self):
+        self.render("login.html")
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/rot13', Rot13Page),
+    ('/login', LoginPage),
 ], debug=True)
