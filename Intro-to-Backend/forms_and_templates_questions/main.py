@@ -52,6 +52,10 @@ class Rot13Page(Handler):
         self.render("rot13.html", message = self.__rot13_string(message))
 
 class LoginPage(Handler):
+    username_regex = re.compile("^[a-zA-Z0-9_-]{3,20}$")
+    password_regex = re.compile("^.{3,20}$")
+    email_regex = re.compile("^[\S]+@[\S]+.[\S]+$")
+
     def check_passwords_match(self, pass1, pass2):
         if pass1 and pass2 and pass1 == pass2:
             return True
@@ -66,7 +70,18 @@ class LoginPage(Handler):
         email = self.request.get("email")
         password = self.request.get("password")
         password_check = self.request.get("verify")
-        error = not self.check_passwords_match(password, password_check)
+
+        if self.check_passwords_match(password, password_check) == True:
+            error = False
+        else:
+            error = True
+
+        if self.username_regex.match(username) and \
+        self.password_regex.match(password) and \
+        self.email_regex.match(email) and \
+        error == False:
+            self.redirect("/rot13")
+
         self.render("login.html", username = username, email = email, error = error)
 
 app = webapp2.WSGIApplication([

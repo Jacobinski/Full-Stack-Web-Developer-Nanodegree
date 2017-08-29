@@ -7,13 +7,14 @@
     Username: <input name = "username" text = "text" value = {{username}}>  <br>
     Password: <input name = "password" type = "password">                   <br>
     Confirm:  <input name = "verify" type = "password">                     <br>
-    Email:    <input name = "email" value = {{email}}>                      <br>
-    <br>
+    Email (optional): <input name = "email" value = {{email}}>              <br>
 
     {% if error == True %}
-    <h3>
-    Error: Invalid password
-    </h3>
+        <h4>
+        Error: Invalid password
+        </h4>
+    {% else %}
+        <br>
     {% endif %}
 
     <input type = "submit">
