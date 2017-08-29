@@ -54,6 +54,10 @@ class LoginPage(Handler):
     def get(self):
         self.render("login.html")
 
+    def post(self):
+        username = self.request.get("username")
+        self.render("login.html")
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/rot13', Rot13Page),

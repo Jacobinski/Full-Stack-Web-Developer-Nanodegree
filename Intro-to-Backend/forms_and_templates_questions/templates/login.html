@@ -3,6 +3,14 @@
 {% block content %}
 <h1>Login Page</h1>
 
-TODO: Write the udacity login page
+<form action = "/login" method = "post">
+    Username: <input name = "username" text="text">         <br>
+    Password: <input name = "password">         <br>
+    Confirm:  <input name = "confirm password"> <br>
+    Email:    <input name = "email">            <br>
+    <input name = "hidden" hidden = "True" >
+    <br>
+    <input type = "submit">
+</form>
 
 {% endblock %}
