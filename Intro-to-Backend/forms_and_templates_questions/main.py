@@ -2,6 +2,7 @@ import webapp2
 import jinja2
 import cgi
 import os
+import re
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -51,12 +52,22 @@ class Rot13Page(Handler):
         self.render("rot13.html", message = self.__rot13_string(message))
 
 class LoginPage(Handler):
+    def check_passwords_match(self, pass1, pass2):
+        if pass1 and pass2 and pass1 == pass2:
+            return True
+        else:
+            return False
+
     def get(self):
         self.render("login.html")
 
     def post(self):
         username = self.request.get("username")
-        self.render("login.html")
+        email = self.request.get("email")
+        password = self.request.get("password")
+        password_check = self.request.get("verify")
+        error = not self.check_passwords_match(password, password_check)
+        self.render("login.html", username = username, email = email, error = error)
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
