@@ -70,19 +70,24 @@ class LoginPage(Handler):
         email = self.request.get("email")
         password = self.request.get("password")
         password_check = self.request.get("verify")
+        error = None
 
-        if self.check_passwords_match(password, password_check) == True:
-            error = False
+        if not self.username_regex.match(username):
+            error = "Invalid username."
+        elif not password or not password_check:
+            error = "Password is required."
+        elif not self.check_passwords_match(password, password_check):
+            error = "Passwords do not match."
+        elif not self.password_regex.match(password):
+            error = "Invalid password."
+        elif email and not self.email_regex.match(email):
+            error = "Invalid email address."
+
+        if error:
+            self.render("login.html", username = username, email = email, error = error)
         else:
-            error = True
-
-        if self.username_regex.match(username) and \
-        self.password_regex.match(password) and \
-        self.email_regex.match(email) and \
-        error == False:
             self.redirect("/rot13")
 
-        self.render("login.html", username = username, email = email, error = error)
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),

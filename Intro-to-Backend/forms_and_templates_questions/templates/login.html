@@ -9,9 +9,9 @@
     Confirm:  <input name = "verify" type = "password">                     <br>
     Email (optional): <input name = "email" value = {{email}}>              <br>
 
-    {% if error == True %}
+    {% if error %}
         <h4>
-        Error: Invalid password
+        Error: {{error}}
         </h4>
     {% else %}
         <br>
