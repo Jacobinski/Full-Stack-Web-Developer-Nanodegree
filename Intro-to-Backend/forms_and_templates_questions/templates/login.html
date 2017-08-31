@@ -10,24 +10,31 @@
         <tr>
             <th style = "text-align: right"> Username: </th>
             <th> <input name = "username" text = "text" value = {{username}}> </th>
+            {% if error_username %}
+            <th> <span style = 'color:red; text-align:left'> {{error_username}} </span> </th>
+            {% endif %}
         </tr>
         <tr>
             <th style = "text-align: right"> Password: </th>
             <th> <input name = "password" type = "password"> </th>
+            {% if error_password %}
+            <th> <span style = 'color:red; text-align:left'> {{error_password}} </span> </th>
+            {% endif %}
         </tr>
         <tr>
             <th style = "text-align: right"> Confirm: </th>
             <th> <input name = "verify" type = "password"> </th>
+            {% if error_verify %}
+            <th> <span style = 'color:red; text-align:left'> {{error_verify}} </span> </th>
+            {% endif %}
         </tr>
         <tr>
             <th style = "text-align: right"> Email (optional): </th>
             <th> <input name = "email" value = {{email}}> </th>
+            {% if error_email %}
+            <th> <span style = 'color:red; text-align:left'> {{error_email}} </span> </th>
+            {% endif %}
         </tr>
-        {% if error %}
-            <h4>
-            Error: {{error}}
-            </h4>
-        {% endif %}
     </table>
 
     <input type = "submit">

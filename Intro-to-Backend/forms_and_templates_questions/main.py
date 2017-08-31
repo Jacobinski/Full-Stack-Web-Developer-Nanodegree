@@ -70,21 +70,21 @@ class LoginPage(Handler):
         email = self.request.get("email")
         password = self.request.get("password")
         password_check = self.request.get("verify")
-        error = None
+        errors = {}
 
         if not self.username_regex.match(username):
-            error = "Invalid username."
-        elif not password or not password_check:
-            error = "Password is required."
-        elif not self.check_passwords_match(password, password_check):
-            error = "Passwords do not match."
-        elif not self.password_regex.match(password):
-            error = "Invalid password."
-        elif email and not self.email_regex.match(email):
-            error = "Invalid email address."
+            errors['error_username'] = "Invalid username."
+        if not password:
+            errors['error_password'] = "Password is required."
+        if not self.check_passwords_match(password, password_check):
+            errors['error_verify'] = "Passwords do not match."
+        if not self.password_regex.match(password):
+            errors['error_password'] = "Invalid password."
+        if email and not self.email_regex.match(email):
+            errors['error_email'] = "Invalid email address."
 
-        if error:
-            self.render("login.html", username = username, email = email, error = error)
+        if errors != {}:
+            self.render("login.html", username = username, email = email, **errors)
         else:
             self.redirect("/welcome?username="+username)
 
