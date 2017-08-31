@@ -1,23 +1,37 @@
 {% extends "index.html" %}
 
 {% block content %}
-<h1>Login Page</h1>
 
 <form action = "/login" method = "post">
-    Username: <input name = "username" text = "text" value = {{username}}>  <br>
-    Password: <input name = "password" type = "password">                   <br>
-    Confirm:  <input name = "verify" type = "password">                     <br>
-    Email (optional): <input name = "email" value = {{email}}>              <br>
-
-    {% if error %}
-        <h4>
-        Error: {{error}}
-        </h4>
-    {% else %}
-        <br>
-    {% endif %}
+    <table>
+        <tr>
+            <span style = "font-size: 26px"> Login Page </span> <br>
+        </tr>
+        <tr>
+            <th style = "text-align: right"> Username: </th>
+            <th> <input name = "username" text = "text" value = {{username}}> </th>
+        </tr>
+        <tr>
+            <th style = "text-align: right"> Password: </th>
+            <th> <input name = "password" type = "password"> </th>
+        </tr>
+        <tr>
+            <th style = "text-align: right"> Confirm: </th>
+            <th> <input name = "verify" type = "password"> </th>
+        </tr>
+        <tr>
+            <th style = "text-align: right"> Email (optional): </th>
+            <th> <input name = "email" value = {{email}}> </th>
+        </tr>
+        {% if error %}
+            <h4>
+            Error: {{error}}
+            </h4>
+        {% endif %}
+    </table>
 
     <input type = "submit">
+
 </form>
 
 {% endblock %}
