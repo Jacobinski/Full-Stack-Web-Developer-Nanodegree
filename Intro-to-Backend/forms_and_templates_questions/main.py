@@ -86,11 +86,16 @@ class LoginPage(Handler):
         if error:
             self.render("login.html", username = username, email = email, error = error)
         else:
-            self.render("welcome.html", username = username)
+            self.redirect("/welcome?username="+username)
 
+class WelcomePage(Handler):
+    def get(self):
+        username = self.request.get("username")
+        self.render("welcome.html", username = username)
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/rot13', Rot13Page),
     ('/login', LoginPage),
+    ('/welcome', WelcomePage),
 ], debug=True)
