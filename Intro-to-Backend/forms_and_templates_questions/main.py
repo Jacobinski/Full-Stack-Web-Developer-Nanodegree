@@ -3,6 +3,7 @@ import jinja2
 import cgi
 import os
 import re
+import random
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
@@ -93,9 +94,18 @@ class WelcomePage(Handler):
         username = self.request.get("username")
         self.render("welcome.html", username = username)
 
+class ABtest(Handler):
+    def get(self):
+        r = random.randint(0,1)
+        if r == 0:
+            self.redirect("http://www.twitter.com")
+        else:
+            self.redirect("http://www.github.com")
+
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/rot13', Rot13Page),
     ('/login', LoginPage),
     ('/welcome', WelcomePage),
+    ('/ABtest', ABtest)
 ], debug=True)
